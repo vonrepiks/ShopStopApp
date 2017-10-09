@@ -1,10 +1,10 @@
-const port = 3000 || process.env.PORT;
+const port = 3000;
 const config = require('./config/config');
 const database = require('./config/database.config');
 const express = require('express');
 
 let app = express();
-let environment = process.env.MONGOLAB_URI || 'development';
+let environment = process.env.NODE_enviroment || 'development';
 
 database(config[environment]);
 require('./config/express')(app, config[environment]);
