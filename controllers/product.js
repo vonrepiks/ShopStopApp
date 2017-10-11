@@ -27,7 +27,7 @@ module.exports.editGet = (req, res) => {
     let id = req.params.id;
 
     Product.findById(id).then((product) => {
-        if (!product || product.buyer !== null) {
+        if (!product || product.buyer !== undefined) {
             res.sendStatus(404);
             return;
         }
@@ -39,6 +39,8 @@ module.exports.editGet = (req, res) => {
                     categories: categories
                 });
             });
+        } else {
+            res.redirect(`/?error=${encodeURIComponent('You are can only view this product!!!')}`);
         }
     });
 };
@@ -98,7 +100,7 @@ module.exports.deleteGet = (req, res) => {
     let id = req.params.id;
 
     Product.findById(id).then((product) => {
-        if (!product || product.buyer !== null) {
+        if (!product || product.buyer !== undefined) {
             res.sendStatus(404);
             return;
         }
@@ -108,7 +110,7 @@ module.exports.deleteGet = (req, res) => {
                 product: product,
             });
         } else {
-            res.redirect(`/?error=${encodeURIComponent('You are can view this product!!!')}`);
+            res.redirect(`/?error=${encodeURIComponent('You are can only view this product!!!')}`);
         }
     });
 };
