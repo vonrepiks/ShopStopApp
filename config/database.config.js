@@ -13,7 +13,7 @@ module.exports = (config) => {
         utils.error(err);
     });
     
-    database.once('openUri', (err) => {
+    database.once('open', (err) => {
         utils.error(err);
         console.log('Connected!');
     });
